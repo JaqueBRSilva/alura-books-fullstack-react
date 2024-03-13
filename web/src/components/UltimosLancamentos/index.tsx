@@ -1,8 +1,8 @@
 import styled from "styled-components"
-import { Titulo } from "../Titulo"
-import { livros } from "./dadosUltimosLancamentos"
 import imagemLivro from '../../assets/images/livro2.png'
 import CardRecomenda from "../CardRecomenda"
+import { Titulo } from "../Titulo"
+import { livros } from "./dadosUltimosLancamentos"
 
 const UltimosLancamentosContainer = styled.section`
     background-color: #EBECEE;
@@ -28,6 +28,7 @@ function UltimosLancamentos() {
             >
                 ÚLTIMOS LANÇAMENTOS
             </Titulo>
+
             <NovosLivrosContainer>
                 {livros.map(livro => (
                     <img src={livro.src} />

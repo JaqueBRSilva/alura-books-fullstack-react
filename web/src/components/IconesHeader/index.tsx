@@ -3,7 +3,7 @@ import perfil from '../../assets/images/perfil.svg'
 import sacola from '../../assets/images/sacola.svg'
 
 const Icone = styled.li`
-     margin-right: 40px;
+    margin-right: 40px;
     width: 25px;
 `
 
