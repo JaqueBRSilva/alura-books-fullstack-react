@@ -44,11 +44,20 @@ const ImgLivro = styled.img`
     width: 150px;
 `
 
-function CardRecomenda({ titulo, subtitulo, descricao, img }) {
+interface CardRecomendaProps {
+    titulo: string;
+    subtitulo: string;
+    descricao: string;
+    img: string;
+}
+
+function CardRecomenda({ titulo, subtitulo, descricao, img }: CardRecomendaProps) {
     return (
         <Card>
             <div>
-                <Titulo tamanhoFonte="16px" cor="#EB9B00" alinhamento="left">{titulo}</Titulo>
+                <Titulo tamanhoFonte="16px" cor="#EB9B00" alinhamento="left">
+                    {titulo}
+                </Titulo>
                 <Subtitulo>{subtitulo}</Subtitulo>
                 <Descricao>{descricao}</Descricao>
             </div>
