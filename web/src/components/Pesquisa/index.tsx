@@ -39,11 +39,16 @@ const Resultado = styled.div`
     img {
         width: 100px;
     }
-    
+
     &:hover {
         border: 1px solid white;
     }
 `
+
+interface LivroProps {
+    src: string;
+    nome: string;
+}
 
 function Pesquisa() {
     const [livrosPesquisados, setLivrosPesquisados] = useState([])
@@ -57,13 +62,13 @@ function Pesquisa() {
                 placeholder="Escreva sua próxima leitura"
                 onBlur={evento => {
                     const textoDigitado = evento.target.value
-                    const resultadoPesquisa = livros.filter(livro => livro.nome.includes(textoDigitado))
+                    const resultadoPesquisa: [] | any = livros.filter(livro => livro.nome.includes(textoDigitado))
                     setLivrosPesquisados(resultadoPesquisa)
                 }}
             />
 
             {
-                livrosPesquisados.map(livro => (
+                livrosPesquisados.map((livro: LivroProps) => (
                     <Resultado>
                         <img src={livro.src} />
                         <p>{livro.nome}</p>
