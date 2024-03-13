@@ -1,11 +1,17 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
-export const Titulo = styled.h2`
+interface TituloProps {
+    tamanhoFonte: string;
+    cor: string;
+    alinhamento?: string;
+}
+
+export const Titulo = styled.h2<TituloProps>`
     width: 100%;
     padding: 30px 0;
     background-color: #FFF;
-    color: ${props => props.cor || '#EB9B00'};
-    font-size: ${props => props.tamanhoFonte || '18px;' };
-    text-align: ${props => props.alinhamento || 'center'};
+    color: ${({ cor }) => cor != '#EB9B00' ? cor : '#EB9B00'};
+    font-size: ${({ tamanhoFonte }) => tamanhoFonte != '18px' ? tamanhoFonte : '18px'};
+    text-align: ${({ alinhamento }) => alinhamento != null ? alinhamento : 'center'};
     margin: 0;
 `
