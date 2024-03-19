@@ -1,8 +1,8 @@
-const fs = require("fs")
+const { getTodosLivros, getLivroPorID, insereLivro, modificaLivro, apagaLivroPorID } = require("../servicos/livro")
 
 function getLivros(req, res) {
     try {
-        const livros = JSON.parse(fs.readFileSync("livros.json"))
+        const livros = getTodosLivros()
         res.send(livros)
 
     } catch (error) {
@@ -11,6 +11,62 @@ function getLivros(req, res) {
     }
 }
 
+function getLivro(req, res) {
+    try {
+        const id = req.params.id
+        const livro = getLivroPorID(id)
+        res.send(livro)
+
+    } catch (error) {
+        res.status(500)
+        res.send(error.message)
+    }
+}
+
+function postLivro(req, res) {
+    try {
+        const livroNovo = req.body
+        insereLivro(livroNovo)
+        res.status(201)
+        res.send("Livro inserido com sucesso!")
+
+    } catch (error) {
+        res.status(500)
+        res.send(error.message)
+    }
+}
+
+function patchLivro(req, res) {
+    try {
+        const id = req.params.id
+        const body = req.body
+
+        modificaLivro(body, id)
+        res.send(`Item ${id} modificado com sucesso!`)
+
+    } catch (error) {
+        res.status(500)
+        res.send(error.message)
+    }
+}
+
+function deleteLivro(req, res) {
+    try {
+        const id = req.params.id
+
+        apagaLivroPorID(id)
+        res.send(`Livro ${id} apagado com sucesso!`)
+
+    } catch (error) {
+        res.status(500)
+        res.send(error.message)
+    }
+}
+
 module.exports = {
-    getLivros
+    getLivros,
+    getLivro,
+    postLivro,
+    patchLivro,
+    deleteLivro
 }
