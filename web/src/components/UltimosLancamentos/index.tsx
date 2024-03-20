@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import imagemLivro from '../../assets/images/livro2.png'
+import imagemLivro from '../../images/livro2.png'
 import CardRecomenda from "../CardRecomenda"
 import { Titulo } from "../Titulo"
 import { livros } from "./dadosUltimosLancamentos"

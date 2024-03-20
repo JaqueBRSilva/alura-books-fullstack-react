@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import perfil from '../../assets/images/perfil.svg'
-import sacola from '../../assets/images/sacola.svg'
+import perfil from '../../images/perfil.svg'
+import sacola from '../../images/sacola.svg'
 
 const Icone = styled.li`
     margin-right: 40px;
