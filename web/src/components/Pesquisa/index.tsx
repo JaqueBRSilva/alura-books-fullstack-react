@@ -1,7 +1,7 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styled from "styled-components"
+import { getLivros } from "../../servicos/livros"
 import Input from "../Input"
-import { livros } from "./dadosPesquisa"
 
 const PesquisaContainer = styled.section`
     background-image: linear-gradient(90deg, #002F52 35%, #326589 165%);
@@ -52,6 +52,16 @@ interface LivroProps {
 
 function Pesquisa() {
     const [livrosPesquisados, setLivrosPesquisados] = useState([])
+    const [livros, setLivros] = useState([])
+
+    async function fetchLivros() {
+        const booksAPI = await getLivros()
+        setLivros(booksAPI)
+    }
+
+    useEffect(() => {
+        fetchLivros()
+    }, [])
 
     return (
         <PesquisaContainer>
