@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import styled from "styled-components"
+import { postFavorito } from "../../servicos/favoritos"
 import { getLivros } from "../../servicos/livros"
 import Input from "../Input"
 
@@ -46,6 +47,7 @@ const Resultado = styled.div`
 `
 
 interface LivroProps {
+    id: String | Number;
     src: string;
     nome: string;
 }
@@ -57,6 +59,11 @@ function Pesquisa() {
     async function fetchLivros() {
         const booksAPI = await getLivros()
         setLivros(booksAPI)
+    }
+
+    async function insertFavorito(id: String | Number) {
+        await postFavorito(id)
+        alert(`Livro de id ${id} inserido com sucesso!`)
     }
 
     useEffect(() => {
@@ -72,14 +79,14 @@ function Pesquisa() {
                 placeholder="Escreva sua próxima leitura"
                 onBlur={evento => {
                     const textoDigitado = evento.target.value
-                    const resultadoPesquisa: [] | any = livros.filter(livro => livro.nome.includes(textoDigitado))
+                    const resultadoPesquisa: [] | any = livros.filter((livro: LivroProps) => livro.nome.includes(textoDigitado))
                     setLivrosPesquisados(resultadoPesquisa)
                 }}
             />
 
             {
                 livrosPesquisados.map((livro: LivroProps) => (
-                    <Resultado>
+                    <Resultado onClick={() => insertFavorito(livro.id)}>
                         <img src={livro.src} />
                         <p>{livro.nome}</p>
                     </Resultado>
