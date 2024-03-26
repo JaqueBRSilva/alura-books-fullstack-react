@@ -14,6 +14,11 @@ const GlobalStyle = createGlobalStyle`
   li {
     list-style: none;
   }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 `
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

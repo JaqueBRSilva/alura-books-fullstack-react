@@ -7,6 +7,8 @@ import OpcoesHeader from "../OpcoesHeader"
 const HeaderContainer = styled.header`
     background-color: #FFF;
     display: flex;
+    align-content: center;
+    justify-content: space-between;
 `
 
 function Header() {
