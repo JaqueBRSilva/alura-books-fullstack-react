@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { createGlobalStyle } from 'styled-components'
 import Header from './components/Header/index.tsx'
 import Favoritos from './rotas/Favoritos.tsx'
-import { default as App, default as Home } from './rotas/Home.tsx'
+import Home from './rotas/Home.tsx'
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -28,6 +28,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       </Routes>
     </BrowserRouter>
 
-    <App />
   </React.StrictMode>
 )
