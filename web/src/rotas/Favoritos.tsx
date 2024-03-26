@@ -45,6 +45,11 @@ const Titulo = styled.h2`
     padding-top: 35px;
 `
 
+interface FavoritosProps {
+  id: string | number;
+  nome: string
+}
+
 function Favoritos() {
   const [favoritos, setFavoritos] = useState([])
 
@@ -69,7 +74,7 @@ function Favoritos() {
         <Titulo>Aqui estão seus livros favoritos:</Titulo>
         <ResultadoContainer>
           {
-            favoritos.length !== 0 ? favoritos.map(favorito => (
+            favoritos.length !== 0 ? favoritos.map((favorito: FavoritosProps) => (
               <Resultado onClick={() => deletarFavorito(favorito.id)}>
                 <p>{favorito.nome}</p>
                 <img src={livroImg} />
