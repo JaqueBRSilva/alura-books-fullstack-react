@@ -17,7 +17,7 @@ function insereFavorito(id) {
 
     const livroInserido = livros.find(livro => livro.id === id)
     const novaListaDeLivrosFavoritos = [...favoritos, livroInserido]
-    fs.writeFileAsync("favoritos.json", JSON.stringify(novaListaDeLivrosFavoritos))
+    fs.writeFileSync("favoritos.json", JSON.stringify(novaListaDeLivrosFavoritos))
 }
 
 module.exports = {
