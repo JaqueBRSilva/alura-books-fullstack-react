@@ -44,7 +44,7 @@
 5. Em um terminal separado, para rodar o Back-end, digite:
 
     ```bash
-    nodemon app.js
+    npm run server
     ```
 6. Agora você poderá testar o projeto
 
@@ -52,7 +52,7 @@
 
 ## 💻 TESTAR ONLINE
 
-    Não disponível no momento
+❕ Não disponível no momento
 
 <br/>
 
