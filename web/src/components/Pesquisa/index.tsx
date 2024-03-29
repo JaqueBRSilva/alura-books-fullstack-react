@@ -47,7 +47,7 @@ const Resultado = styled.div`
 `
 
 interface LivroProps {
-    id: String | Number;
+    id: string;
     src: string;
     nome: string;
 }
@@ -55,15 +55,25 @@ interface LivroProps {
 function Pesquisa() {
     const [livrosPesquisados, setLivrosPesquisados] = useState([])
     const [livros, setLivros] = useState([])
+    const [searchTxt, setSearchTxt] = useState('')
 
     async function fetchLivros() {
         const booksAPI = await getLivros()
         setLivros(booksAPI)
     }
 
-    async function insertFavorito(id: String | Number) {
+    async function insertFavorito(id: string) {
         await postFavorito(id)
         alert(`Livro de id ${id} inserido com sucesso!`)
+    }
+
+    function searchContent(txt: string) {
+        if (txt.length == 0 || null) {
+            alert('Digite algum texto para buscar o livro')
+        } else {
+            const resultadoPesquisa: [] | any = livros.filter((livro: LivroProps) => livro.nome.toLowerCase().includes((txt.toLowerCase())))
+            setLivrosPesquisados(resultadoPesquisa)
+        }
     }
 
     useEffect(() => {
@@ -77,16 +87,13 @@ function Pesquisa() {
 
             <Input
                 placeholder="Escreva sua próxima leitura"
-                onBlur={evento => {
-                    const textoDigitado = evento.target.value
-                    const resultadoPesquisa: [] | any = livros.filter((livro: LivroProps) => livro.nome.includes(textoDigitado))
-                    setLivrosPesquisados(resultadoPesquisa)
-                }}
+                value={searchTxt}
+                onChange={evento => setSearchTxt(evento.target.value)}
             />
 
             {
                 livrosPesquisados.map((livro: LivroProps) => (
-                    <Resultado onClick={() => insertFavorito(livro.id)}>
+                    <Resultado id={livro.id} onClick={() => insertFavorito(livro.id)}>
                         <img src={livro.src} />
                         <p>{livro.nome}</p>
                     </Resultado>
