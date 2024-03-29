@@ -1,18 +1,13 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import livroImg from '../images/livro.png';
+import ResultadoContainer from '../components/ResultadoContainer';
+import livroImg from '../images/alura-logo-280x280.png';
 import { deleteFavorito, getFavoritos } from '../servicos/favoritos';
 
 const AppContainer = styled.div`
   width: 100vw;
   height: 100vh;
   background-image: linear-gradient(90deg, #002F52 35%, #326589 165%);
-`
-
-const ResultadoContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
 `
 
 const Resultado = styled.div`
