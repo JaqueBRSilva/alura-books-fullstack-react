@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import styled from "styled-components"
+import COVER_SRC from '../../images/alura-logo-280x280.png'
+import MagnifyingGlass from '../../images/magnifying-glass.svg'
 import { postFavorito } from "../../servicos/favoritos"
 import { getLivros } from "../../servicos/livros"
 import Input from "../Input"
@@ -47,9 +49,40 @@ const Resultado = styled.div`
     }
 `
 
+const BookCover = styled.img``
+
+const BookName = styled.p`
+    font-size: 1.2rem;
+`
+const SearchContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 3.5rem;
+`
+
+const SearchButton = styled.button`
+    background-color: transparent;
+    position: relative;
+    right: 4rem;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border-color: transparent;
+`
+
+const MagnifyingGlassIcon = styled.img`
+    width: 2.5rem;
+    height: 2.5rem;
+    
+    &:hover {
+        filter: invert(22%) sepia(19%) saturate(2569%) hue-rotate(167deg) brightness(97%) contrast(88%);
+    }
+`
+
 interface LivroProps {
     id: string;
-    src: string;
+    img_src: string;
     nome: string;
 }
 
@@ -86,20 +119,31 @@ function Pesquisa() {
             <Titulo>Já sabe por onde começar ?</Titulo>
             <Subtitulo>Encontre seu livro em nossa estante</Subtitulo>
 
-            <Input
-                placeholder="Escreva sua próxima leitura"
-                value={searchTxt}
-                onChange={evento => setSearchTxt(evento.target.value)}
-            />
+            <SearchContainer>
+                <Input
+                    placeholder="Escreva sua próxima leitura"
+                    value={searchTxt}
+                    onChange={evento => setSearchTxt(evento.target.value)}
+                    enterKeyHint={"search"}
+                />
 
-            {
-                livrosPesquisados.map((livro: LivroProps) => (
-                    <Resultado id={livro.id} onClick={() => insertFavorito(livro.id)}>
-                        <img src={livro.src} />
-                        <p>{livro.nome}</p>
-                    </Resultado>
-                ))
-            }
+                <SearchButton onClick={() => searchContent(searchTxt)}>
+                    <MagnifyingGlassIcon src={MagnifyingGlass} />
+                </SearchButton>
+            </SearchContainer>
+
+            <ResultadoContainer>
+                {
+                    livrosPesquisados.map((livro: LivroProps) => (
+                        <Resultado id={livro.id}
+                            onClick={() => insertFavorito(livro.id)}
+                        >
+                            <BookCover src={livro.img_src || COVER_SRC} alt={livro.nome} />
+                            <BookName>{livro.nome}</BookName>
+                        </Resultado>
+                    ))
+                }
+            </ResultadoContainer>
 
         </PesquisaContainer>
     )
