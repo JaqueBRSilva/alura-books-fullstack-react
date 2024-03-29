@@ -5,6 +5,7 @@ const ResultadoContainer = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
+  margin-top: 3rem;
 `
 
 export default ResultadoContainer

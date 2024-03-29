@@ -12,7 +12,7 @@ const PesquisaContainer = styled.section`
     color: #FFF;
     text-align: center;
     padding: 85px 0;
-    height: 270px;
+    min-height: 270px;
     width: 100%;
 `
 
@@ -40,20 +40,19 @@ const Resultado = styled.div`
         width: 200px;
     }
 
-    img {
-        width: 100px;
-    }
-
     &:hover {
         border: 1px solid white;
     }
 `
 
-const BookCover = styled.img``
+const BookCover = styled.img`
+    width: 120px;
+`
 
 const BookName = styled.p`
     font-size: 1.2rem;
 `
+
 const SearchContainer = styled.div`
     display: flex;
     justify-content: center;
